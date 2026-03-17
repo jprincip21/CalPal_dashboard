@@ -2,7 +2,7 @@
 //     User, Calendar
 // } from 'lucide-react';
 
-const Sidebar = () => {
+export default function Sidebar(){
 
 return (
     <div className="shadow-lg overflow">
@@ -14,5 +14,3 @@ return (
     </div>
     )
 };
-
-export default Sidebar;
