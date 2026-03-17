@@ -1,0 +1,10 @@
+const Topbar = () => {
+
+return (
+    <div className="flex justify-between items-center w-screen h-header bg-indigo-500 relative z-10">
+        <h1>Top Bar</h1>
+    </div>
+    )
+};
+
+export default Topbar;
