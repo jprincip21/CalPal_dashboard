@@ -13,7 +13,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         <Sidebar />
         
         {/* Main Content Area */}
-        <main className="flex-1 overflow-y-auto bg-zinc-50 p-1">
+        <main className="flex-1 overflow-y-auto bg-blue-100 p-1 text-black">
           <div className="max-screen mx-auto">
             {children}
           </div>
