@@ -14,7 +14,7 @@ export function SidebarButton({ icon, link }: sidebarButtonProps) {
     const pathname = usePathname();
     const isActive = pathname === link;
 
-    const basestyles = "flex items-center p-3 mt-2 rounded-lg transition-colors duration-300 outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+    const basestyles = "flex items-center p-3 my-2 rounded-lg transition-colors duration-300 outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
     
     // If page is selected
     if (isActive) {
