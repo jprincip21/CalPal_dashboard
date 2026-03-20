@@ -19,7 +19,7 @@ export function SidebarButton({ icon, link }: sidebarButtonProps) {
     // If page is selected
     if (isActive) {
         return (
-            <div className={cn(basestyles, "bg-violet-100 text-violet-600 font-medium opacity-80")}>
+            <div className={cn(basestyles, "bg-lavender-light text-lavender-primary font-medium opacity-80")}>
                 {icon}
             </div>
         );
