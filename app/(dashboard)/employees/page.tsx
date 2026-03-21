@@ -1,3 +1,7 @@
+import PageShell from "@/components/layout/pageShell";
+
 export default function EmployeesPage() {
-    return <div className="min-h-full">Employees Page</div>
+   return (
+   <PageShell title="Employees" leftTitle="Your Employees" rightTitle="Add Employee"/>
+   );
 }

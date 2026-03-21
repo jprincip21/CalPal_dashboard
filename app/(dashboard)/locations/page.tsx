@@ -1,3 +1,7 @@
+import PageShell from "@/components/layout/pageShell"
+
 export default function LocationPage() {
-    return <div className="min-h-full">Location Page</div>
+    return (
+        <PageShell title="Locations" leftTitle="Your Locations" rightTitle="Create Location"/>
+    )
 }
