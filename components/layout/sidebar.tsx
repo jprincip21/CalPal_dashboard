@@ -1,7 +1,7 @@
 import {
     Home, User, Calendar, MapPin
 } from 'lucide-react';
-import { SidebarButton } from '../ui/sidebarButton';
+import { SidebarButton } from '@/components/ui/sidebarButton';
 
 export default function Sidebar(){
 
