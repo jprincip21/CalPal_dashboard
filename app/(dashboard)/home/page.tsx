@@ -35,7 +35,7 @@ export default function HomePage() {
 
                 {/* Location */}
                 <section className="p-6 bg-white rounded-lg shadow-sm border-t-4 border-lavender-primary">
-                    <h3 className="text-xl font-bold text-lavender-dark flex items-center gap-2">Locations</h3>
+                    <h3 className="text-xl font-bold text-lavender-dark">Locations</h3>
                     <ul className="mt-4 text-sm text-slate-600 list-disc list-outside pl-5 space-y-3">
                         <li>If you have not created a location you will only see a "Create Location" button.</li>
                         <li>Click the "Create Location" Button and fill in the fields:
@@ -52,7 +52,7 @@ export default function HomePage() {
 
                 {/* Employees */}
                 <section className="p-6 bg-white rounded-lg shadow-sm border-t-4 border-lavender-primary">
-                     <h3 className="text-xl font-bold text-lavender-dark flex items-center gap-2">Employees</h3>
+                     <h3 className="text-xl font-bold text-lavender-dark">Employees</h3>
                      <ul className="mt-4 text-sm text-slate-600 list-disc list-outside pl-5 space-y-3">
                         <li>To successfully create an employee you must have at least 1 location created.</li>
                         <li>If you have not created an employee you will only see a "Create Employee" button.</li>
@@ -74,7 +74,7 @@ export default function HomePage() {
 
                 {/* Schedules */}
                 <section className="p-6 bg-white rounded-lg shadow-sm border-t-4 border-lavender-primary">
-                     <h3 className="text-xl font-bold text-lavender-dark flex items-center gap-2">Schedules</h3>
+                     <h3 className="text-xl font-bold text-lavender-dark">Schedules</h3>
                      <ul className="mt-4 text-sm text-slate-600 list-disc list-outside pl-5 space-y-3">
                         <li>To create a schedule you first must have at least 1 employee and 1 location created.</li>
                         <li>If you have not created any schedules you will only see a create schedule button.</li>

@@ -1,3 +1,13 @@
+import PageShell from "@/components/layout/pageShell";
+import NewEmployeeForm from "@/widgets/NewEmployeeForm";
+
 export default function EmployeesPage() {
-    return <div className="min-h-full">Employees Page</div>
+   return (
+   <PageShell 
+        title="Employees"
+        leftTitle="Your Employees" 
+        rightTitle="Add Employee"
+        rightContent={<NewEmployeeForm/>}
+        />
+   );
 }

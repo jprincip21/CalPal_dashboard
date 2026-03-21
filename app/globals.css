@@ -35,3 +35,22 @@ body {
   color: var(--color-lavender-dark);
   font-family: 'Inter', sans-serif;
 }
+
+@layer components {
+  .page-main-div {
+    @apply flex flex-col gap-8 p-6 min-h-full rounded-xl bg-slate-50 shadow-sm;
+    background-color: var(--color-background);
+  }
+  .page-content-div-3 {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+    background-color: var(--color-background);
+  }
+  .page-content-div-2 {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-6;
+    background-color: var(--color-background);
+  }
+  .page-content-section {
+    @apply p-6 bg-white rounded-lg shadow-sm border-t-4 border-lavender-primary;
+    background-color: var(--color-background);
+  }
+}
