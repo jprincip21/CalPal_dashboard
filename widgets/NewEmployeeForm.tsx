@@ -3,7 +3,8 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Briefcase, MapPin, User, Mail, DollarSign, Calendar } from "lucide-react";
+import { Briefcase, MapPin, User, Mail } from "lucide-react";
+import { Select } from "@/components/ui/select";
 
 export default function NewEmployeeForm() {
     const [loading, setLoading] = useState(false);
@@ -33,9 +34,6 @@ export default function NewEmployeeForm() {
         form.reset();
     }
 
-    // Shared Tailwind class for our custom-styled select inputs
-    const selectClass = "flex h-10 w-full rounded-md border border-slate-200 bg-white px-3 py-2 text-sm ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 disabled:cursor-not-allowed disabled:opacity-50";
-
     return (
 
             <form onSubmit={handleSubmit} className="p-6 space-y-8">
@@ -43,7 +41,7 @@ export default function NewEmployeeForm() {
                 {/* SECTION: Personal Information */}
                 <section className="space-y-4">
                     <div className="flex items-center gap-2 border-b border-slate-100 pb-2">
-                        <User className="w-4 h-4 text-pr text-lavender-dark" />
+                        <User className="w-4 h-4 text-lavender-dark" />
                         <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-500">Personal Details</h3>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -55,7 +53,7 @@ export default function NewEmployeeForm() {
                             <label className="text-sm font-medium text-slate-700">Last Name</label>
                             <Input name="last_name" placeholder="Last" required />
                         </div>
-                        <div className="space-y-1.5">
+                        <div className="sm:col-span-1 md:col-span-2 space-y-1.5">
                             <label className="text-sm font-medium text-slate-700 flex items-center gap-1.5"><Mail className="w-3 h-3"/> Email</label>
                             <Input type="email" name="email" placeholder="example@company.com" required />
                         </div>
@@ -73,7 +71,7 @@ export default function NewEmployeeForm() {
                         <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-500">Address</h3>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        <div className="md:col-span-2 space-y-1.5">
+                        <div className="sm:col-span-1 md:col-span-2 space-y-1.5">
                             <label className="text-sm font-medium text-slate-700">Street Address</label>
                             <Input name="address" placeholder="123 Example St" required />
                         </div>
@@ -108,36 +106,36 @@ export default function NewEmployeeForm() {
                             <Input name="job_title" placeholder="Staff" required />
                         </div>
                         <div className="space-y-1.5">
-                            <label className="text-sm font-medium text-slate-700 flex items-center gap-1.5"><Calendar className="w-3 h-3"/> Hire Date</label>
+                            <label className="text-sm font-medium text-slate-700">Hire Date</label>
                             <Input type="date" name="hire_date" defaultValue={today} required />
                         </div>
                         <div className="space-y-1.5">
                             <label className="text-sm font-medium text-slate-700">Wage Type</label>
-                            <select name="wage_type" className={selectClass}>
+                            <Select name="wage_type">
                                 <option value="Hourly">Hourly</option>
                                 <option value="Salary">Salary</option>
-                            </select>
+                            </Select>
                         </div>
                         <div className="space-y-1.5">
-                            <label className="text-sm font-medium text-slate-700 flex items-center gap-1.5"><DollarSign className="w-3 h-3"/> Wage</label>
+                            <label className="text-sm font-medium text-slate-700">Wage</label>
                             <Input type="number" step="0.01" name="wage" placeholder="0.00" required />
                         </div>
                         <div className="space-y-1.5">
                             <label className="text-sm font-medium text-slate-700">Employee Status</label>
-                            <select name="is_active" className={selectClass}>
+                            <Select name="is_active">
                                 <option value="true">Active</option>
                                 <option value="false">Inactive</option>
-                            </select>
+                            </Select>
                         </div>
 
                         {/* Locations will come from an API Call. Create Select Component/Widget for this.*/}
                         <div className="space-y-1.5">
                             <label className="text-sm font-medium text-slate-700">Work Location</label>
-                            <select name="workLocations" className={selectClass}>
+                            <Select name="workLocations">
                                 <option>Location 1</option>
                                 <option>Location 2</option>
                                 <option>Location 3</option>
-                            </select>
+                            </Select>
                         </div>
                     </div>
                 </section>
