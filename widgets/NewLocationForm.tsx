@@ -1,4 +1,5 @@
 "use client";
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -45,6 +46,7 @@ export default function NewLocationForm() {
                     </div>
                 </div>
             </section>
+
             {/* Location Address */}
             <section className="space-y-4">
 
@@ -63,12 +65,12 @@ export default function NewLocationForm() {
                         <Input name="city" placeholder="City" required />
                     </div>
 
-                    <div className="space-y-1.5 col-span-1 lg:col-span-1 gap-6">
+                    <div className="space-y-1.5 col-span-1 gap-6">
                         <label className="text-sm font-medium text-slate-700">Province/State</label>
                         <Input name="province_state_region" placeholder="ON" required />
                     </div>
 
-                    <div className="space-y-1.5 col-span-1 lg:col-span-1 gap-6">
+                    <div className="space-y-1.5 col-span-1 gap-6">
                         <label className="text-sm font-medium text-slate-700">Postal Code</label>
                         <Input name="postal_zip_code" placeholder="A1B 2C3" required />
                     </div>
