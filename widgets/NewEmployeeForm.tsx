@@ -1,36 +1,44 @@
 "use client";
 
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Briefcase, MapPin, User, Mail } from "lucide-react";
 import { Select } from "@/components/ui/select";
+import { EmployeeRequest } from "@/types/employee";
 
-export default function NewEmployeeForm() {
-    const [loading, setLoading] = useState(false);
+interface NewEmployeeFormProps {
+    onSubmit: (data: EmployeeRequest) => Promise<void>;
+    loading: boolean;
+}
+
+export default function NewEmployeeForm( { onSubmit, loading }: NewEmployeeFormProps) {
     const today = new Date().toLocaleDateString('en-CA');
 
     async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
         const form = event.currentTarget
-        setLoading(true);
         
         const formData = new FormData(form);
         const data = Object.fromEntries(formData.entries());
 
-        // Convert string "true"/"false" from select to actual boolean for Python API
         const payload = {
-            ...data,
+            first_name: data.first_name as string,
+            last_name: data.last_name as string,
+            address: data.address as string,
+            city: data.city as string,
+            province_state_region: data.province_state_region as string,
+            country: data.country as string,
+            postal_zip_code: data.postal_zip_code as string,
+            phone_number: data.phone_number as string,
+            email: data.email as string,
+            job_title: data.job_title as string,
+            wage_type: data.wage_type as string,
             wage: parseFloat(data.wage as string),
+            hire_date: data.hire_date as string,
             is_active: data.is_active === "true"
         };
 
-        console.log("Submitting to API:", payload);
-        
-        // Mock API delay
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        
-        setLoading(false);
+        await onSubmit(payload);
         form.reset();
     }
 

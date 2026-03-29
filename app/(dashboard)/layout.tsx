@@ -1,5 +1,6 @@
 import Sidebar from "@/components/layout/sidebar";
 import Topbar from "@/components/layout/topbar";
+import { Toaster } from "sonner";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -15,6 +16,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         <main className="flex-1 overflow-y-auto bg-background p-6 text-black">
           <div className="max-w-7xl mx-auto">
             {children}
+            <Toaster position="top-right" richColors />
           </div>
         </main>
       </div>
