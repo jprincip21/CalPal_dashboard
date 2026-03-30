@@ -5,8 +5,10 @@ import EmployeeTable from "@/widgets/EmployeeTable";
 import { useEmployees } from "@/hooks/useEmployees";
 import { Employee } from "@/types/employee";
 import EmployeeForm from "@/widgets/EmployeeForm";
+import { useLocations } from "@/hooks/useLocation";
 
 export default function EmployeesClient() {
+    const { locations } = useLocations();
     const { employees, loading, addEmployee, editEmployee, removeEmployee } = useEmployees();
     const [selectedEmployee, setSelectedEmployee] = useState<Employee | null>(null);
     
@@ -30,6 +32,7 @@ export default function EmployeesClient() {
                 key={selectedEmployee?.id ?? "new-employee"}
                 mode={selectedEmployee ? "edit" : "create"}
                 initialData={selectedEmployee ?? undefined}
+                locations={locations}
                 loading={loading}
                 onCancel={() => setSelectedEmployee(null)}
                 onSubmit={async (data) => {

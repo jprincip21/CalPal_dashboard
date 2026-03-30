@@ -5,10 +5,12 @@ import { Input } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
 import { Briefcase, MapPin, User, Mail, ArrowLeft, Trash2 } from "lucide-react";
 import { Employee, EmployeeRequest } from "@/types/employee";
+import { Location } from "@/types/location";
 
 interface EmployeeFormProps {
     mode: "create" | "edit";
     initialData?: Employee; // Only required for 'edit' mode
+    locations: Location[];
     onSubmit: (data: EmployeeRequest) => Promise<void>;
     onDelete?: (id: number) => Promise<void>;
     onCancel?: () => void;
@@ -18,6 +20,7 @@ interface EmployeeFormProps {
 export default function EmployeeForm({ 
     mode, 
     initialData, 
+    locations,
     onSubmit, 
     onDelete, 
     onCancel, 
@@ -171,13 +174,15 @@ export default function EmployeeForm({
                         </Select>
                     </div>
 
-                     {/* Locations will come from an API Call. Create Select Component/Widget for this.*/}
+                     {/* Update to Multi Select later*/}
+                     {/* Locations are being pulled in now. We need to create an endpoint to create a user link to locations*/}
                     <div className="space-y-1.5">
                         <label className="text-sm font-medium text-slate-700">Work Location</label>
                         <Select name="workLocations">
-                            <option>Location 1</option>
-                            <option>Location 2</option>
-                            <option>Location 3</option>
+                            <option value="">Select a location</option>
+                            {locations.map(location => (
+                                <option key={location.id} value={location.id}>{location.name}</option>
+                            ))}
                         </Select>
                     </div>
                 </div>
