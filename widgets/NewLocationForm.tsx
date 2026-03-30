@@ -81,7 +81,6 @@ export default function NewLocationForm() {
                     </div>
                 </div>
             </section>
-
             
             <div className="pt-4 flex flex-col gap-3">
             <Button type="submit" disabled={loading} className="w-full h-11">
