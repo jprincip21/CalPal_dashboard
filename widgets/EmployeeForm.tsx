@@ -168,7 +168,7 @@ export default function EmployeeForm({
 
                     <div className="space-y-1.5">
                         <label className="text-sm font-medium text-slate-700">Employee Status</label>
-                        <Select name="is_active" defaultValue={String(initialData?.is_active) === "true" || String(initialData?.is_active) === "1" ? "true" : "false"}>
+                        <Select name="is_active" defaultValue={initialData? String(initialData?.is_active) === "true" || String(initialData?.is_active) === "1" ? "true" : "false" : "true"}>
                             <option value="true">Active</option>
                             <option value="false">Inactive</option>
                         </Select>
