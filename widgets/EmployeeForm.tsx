@@ -193,7 +193,9 @@ export default function EmployeeForm({
                     <Button 
                         type="button" 
                         disabled={loading}
-                        onClick={() => onDelete(initialData.id)}
+                        onClick={() => {if (confirm("Are you sure you want to delete this employee?")) {
+                                onDelete(initialData.id);
+                        }}}
                         className="w-full h-11 bg-red-400 hover:bg-red-500"
                     >
                         {loading ? "Deleting..." : "Delete Employee"}
