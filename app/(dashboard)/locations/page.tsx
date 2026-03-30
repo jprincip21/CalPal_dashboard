@@ -1,13 +1,7 @@
-import PageShell from "@/components/layout/pageShell"
-import NewLocationForm from "@/widgets/NewLocationForm"
+import LocationsClient from "@/components/clients/locationsClient"
 
 export default function LocationPage() {
     return (
-        <PageShell 
-            title="Locations" 
-            leftTitle="Your Locations" 
-            rightTitle="Create Location" 
-            rightContent={<NewLocationForm/>}
-            />
+        <LocationsClient />
     )
 }

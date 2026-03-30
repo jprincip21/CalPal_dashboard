@@ -40,7 +40,12 @@ export default function EmployeesClient() {
                         await addEmployee(data);
                     }
                 }}
-                onDelete={removeEmployee}
+                onDelete={async () => {
+                    if (selectedEmployee) {
+                    await removeEmployee(selectedEmployee.id);
+                    setSelectedEmployee(null)
+                    }
+                }}
             />}
         />
     );
