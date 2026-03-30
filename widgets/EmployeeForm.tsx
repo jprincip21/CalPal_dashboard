@@ -165,7 +165,7 @@ export default function EmployeeForm({
 
                     <div className="space-y-1.5">
                         <label className="text-sm font-medium text-slate-700">Employee Status</label>
-                        <Select name="is_active" defaultValue={initialData ? String(initialData.is_active) : "true"}>
+                        <Select name="is_active" defaultValue={String(initialData?.is_active) === "true" || String(initialData?.is_active) === "1" ? "true" : "false"}>
                             <option value="true">Active</option>
                             <option value="false">Inactive</option>
                         </Select>
@@ -186,7 +186,7 @@ export default function EmployeeForm({
             {/* ACTION BUTTONS */}
             <div className="pt-4 flex flex-col gap-3">
                 <Button type="submit" disabled={loading} className="w-full h-11">
-                    {loading ? "Processing..." : mode === "create" ? "Save New Employee" : "Save Changes"}
+                    {loading ? "Processing..." : mode === "create" ? "Add Employee" : "Update Employee"}
                 </Button>
                 
                 {mode === "edit" && onDelete && initialData && (
