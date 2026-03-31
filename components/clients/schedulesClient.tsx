@@ -5,8 +5,9 @@ import { useLocations } from "@/hooks/useLocation";
 import { Schedule } from "@/types/schedules";
 import ScheduleTable from "@/widgets/ScheduleTable";
 import ScheduleForm from "@/widgets/ScheduleForm";
-// import ScheduleDetail from "@/widgets/ScheduleDetail";
+import ScheduleDetail from "@/widgets/ScheduleDetail";
 import { Button } from "@/components/ui/button";
+import { ArrowLeft } from "lucide-react";
 
 type View = "table" | "create" | "detail";
 
@@ -26,6 +27,12 @@ export default function SchedulesClient() {
         setView("table");
     }
 
+    const handleDelete = async (id: number) => {
+        await removeSchedule(id)
+        setView("table");
+        setSelectedSchedule(null);
+    }
+
     return (
         <div className="flex flex-col gap-8 p-6 min-h-full rounded-xl bg-slate-50 shadow-sm">
 
@@ -41,7 +48,10 @@ export default function SchedulesClient() {
                             setView("table");
                             setSelectedSchedule(null);
                             }} 
-                            className="flex items-center p-2 gap-2 h-11 bg-red-400 hover:bg-red-500">Back to Schedules</Button>
+                            className="flex items-center p-2 gap-2 h-11">
+                                <ArrowLeft className="w-4 h-4 text-white" />
+                                Back to Schedules
+                                </Button>
                 )}
             </div>
 
@@ -54,12 +64,21 @@ export default function SchedulesClient() {
                         selectedId={selectedSchedule?.id}
                     />
                 )}
+
                 {view === "create" && (
                     <ScheduleForm
                         locations={locations}
                         loading={loading}
                         onSubmit={handleCreate}
-                        />
+                    />
+                )}
+
+                {view === "detail" && selectedSchedule && (
+                    <ScheduleDetail
+                        schedule={selectedSchedule}
+                        loading={loading}
+                        onDelete={handleDelete}
+                    />
                 )}
             </div>
         </div>
