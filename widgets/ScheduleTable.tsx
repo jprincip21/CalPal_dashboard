@@ -27,7 +27,7 @@ export default function ScheduleTable ({ schedules, onSelect, selectedId}: Sched
                                 ${selectedId === schedule.id ? "bg-lavender-light" : ""}`}
                         >
                             <td className="py-3 px-2 font-medium text-slate-700">{schedule.location_name ?? "Not Set"}</td>
-                            <td className="py-3 px-2 font-medium text-slate-700">{schedule.start_date}-{schedule.end_date}</td>
+                            <td className="py-3 px-2 font-medium text-slate-700">{schedule.start_date} - {schedule.end_date}</td>
                             <td className="py-3 px-2">
                                 <span className={`px-2 py-1 rounded-full text-xs font-medium
                                 ${schedule.state === "draft"
