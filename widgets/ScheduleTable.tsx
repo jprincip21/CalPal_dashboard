@@ -13,9 +13,9 @@ export default function ScheduleTable ({ schedules, onSelect, selectedId}: Sched
             <table className="w-full text-sm text-left">
                 <thead>
                     <tr className="border-b border-slate-200">
-                        <th className="pb-3 font-semibold text-slate-500 uppercase tracking-wider text-xs">Location</th>
-                        <th className="pb-3 font-semibold text-slate-500 uppercase tracking-wider text-xs">Dates</th>
-                        <th className="pb-3 font-semibold text-slate-500 uppercase tracking-wider text-xs">Status</th>
+                        <th className="pb-3 px-2 font-semibold text-slate-500 uppercase tracking-wider text-xs">Location</th>
+                        <th className="pb-3 px-2 font-semibold text-slate-500 uppercase tracking-wider text-xs">Dates</th>
+                        <th className="pb-3 px-2 font-semibold text-slate-500 uppercase tracking-wider text-xs">Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -26,10 +26,10 @@ export default function ScheduleTable ({ schedules, onSelect, selectedId}: Sched
                             className={`border-b border-slate-100 cursor-pointer transition-colors hover:bg-slate-50
                                 ${selectedId === schedule.id ? "bg-lavender-light" : ""}`}
                         >
-                            <td className="py-3 pr-4 font-medium text-slate-700">{schedule.location_name ?? "Not Set"}</td>
-                            <td className="py-3 pr-4 font-medium text-slate-700">{schedule.start_date}-{schedule.end_date}</td>
+                            <td className="py-3 px-2 font-medium text-slate-700">{schedule.location_name ?? "Not Set"}</td>
+                            <td className="py-3 px-2 font-medium text-slate-700">{schedule.start_date}-{schedule.end_date}</td>
                             <td className="py-3">
-                                <span className={`px-2 py-1 rounder-full text-xs font-medium
+                                <span className={`px-2 py-1 rounded-full text-xs font-medium
                                 ${schedule.state === "draft"
                                     ? "bg-slate-100 text-slate-600"
                                     : schedule.state === "published"
