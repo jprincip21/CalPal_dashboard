@@ -1,4 +1,3 @@
-"use client";
 // CalPal Dashboard - useLocations Hook
 // Jonathan Principato (400527847)
 // Manages location state and calls the locationApi functions
