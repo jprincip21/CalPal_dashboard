@@ -1,10 +1,5 @@
-import PageShell from "@/components/layout/pageShell";
+import SchedulesClient from "@/components/clients/schedulesClient";
 
-export default function SchedulePage() {
-    return (
-    <PageShell 
-        title="Schedules" 
-        leftTitle="Existing Schedules" 
-        rightTitle="Create Schedule"/>
-    );
+export default function SchedulesPage() {
+    return <SchedulesClient />
 }

@@ -48,7 +48,8 @@ export default function EmployeeForm({
             wage_type: data.wage_type as string,
             wage: parseFloat(data.wage as string),
             hire_date: data.hire_date as string,
-            is_active: data.is_active === "true"
+            is_active: data.is_active === "true",
+            location_id: data.location_id ? parseInt(data.location_id as string) : null
         };
 
         await onSubmit(payload);
@@ -175,10 +176,9 @@ export default function EmployeeForm({
                     </div>
 
                      {/* Update to Multi Select later*/}
-                     {/* Locations are being pulled in now. We need to create an endpoint to create a user link to locations*/}
                     <div className="space-y-1.5">
                         <label className="text-sm font-medium text-slate-700">Work Location</label>
-                        <Select name="workLocations">
+                        <Select name="location_id" defaultValue={initialData?.location_id ?? ""}>
                             <option value="">Select a location</option>
                             {locations.map(location => (
                                 <option key={location.id} value={location.id}>{location.name}</option>

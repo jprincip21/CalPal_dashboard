@@ -1,4 +1,3 @@
-"use client";
 // CalPal Dashboard - useEmployees Hook
 // Jonathan Principato (400527847)
 // Manages employee state and calls the employeeApi functions

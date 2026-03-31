@@ -14,6 +14,7 @@ export interface Employee {
     wage: number
     hire_date: string
     is_active: boolean
+    location_id: number | null
 }
 
 // Used for POST and PUT requests where no id is required

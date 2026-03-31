@@ -126,7 +126,7 @@ export default function LocationForm({
                         }}}
                         className="w-full h-11 bg-red-400 hover:bg-red-500"
                     >
-                        {loading ? "Deleteing" : "Delete Employee"}
+                        {loading ? "Deleteing" : "Delete Location"}
                     </Button>
                 )}
             </div>
