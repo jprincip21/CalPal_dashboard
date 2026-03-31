@@ -28,10 +28,10 @@ export default function ScheduleTable ({ schedules, onSelect, selectedId}: Sched
                         >
                             <td className="py-3 px-2 font-medium text-slate-700">{schedule.location_name ?? "Not Set"}</td>
                             <td className="py-3 px-2 font-medium text-slate-700">{schedule.start_date}-{schedule.end_date}</td>
-                            <td className="py-3">
+                            <td className="py-3 px-2">
                                 <span className={`px-2 py-1 rounded-full text-xs font-medium
                                 ${schedule.state === "draft"
-                                    ? "bg-slate-100 text-slate-600"
+                                    ? "bg-slate-200 text-slate-600"
                                     : schedule.state === "published"
                                     ? "bg-blue-100 text-blue-700"
                                     : "bg-green-100 text-green-600"}`}>
