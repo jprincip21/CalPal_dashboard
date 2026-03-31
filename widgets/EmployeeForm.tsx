@@ -176,7 +176,6 @@ export default function EmployeeForm({
                     </div>
 
                      {/* Update to Multi Select later*/}
-                     {/* Locations are being pulled in now. We need to create an endpoint to create a user link to locations*/}
                     <div className="space-y-1.5">
                         <label className="text-sm font-medium text-slate-700">Work Location</label>
                         <Select name="location_id" defaultValue={initialData?.location_id ?? ""}>
