@@ -21,6 +21,11 @@ export default function SchedulesClient() {
         setView("detail");
     };
 
+    const handleCreate = async (data: any) => {
+        await addSchedule(data);
+        setView("table");
+    }
+
     return (
         <div className="flex flex-col gap-8 p-6 min-h-full rounded-xl bg-slate-50 shadow-sm">
 
@@ -48,6 +53,13 @@ export default function SchedulesClient() {
                         onSelect={handleSelect}
                         selectedId={selectedSchedule?.id}
                     />
+                )}
+                {view === "create" && (
+                    <ScheduleForm
+                        locations={locations}
+                        loading={loading}
+                        onSubmit={handleCreate}
+                        />
                 )}
             </div>
         </div>
