@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Schedule } from "@/types/schedules";
 import { Calendar, MapPin } from "lucide-react";
+import { formatDate } from "@/lib/utils";
 
 interface ScheduleDetailProps {
     schedule: Schedule;
@@ -33,7 +34,7 @@ export default function ScheduleDetail({ schedule, loading, onDelete }: Schedule
                         <Calendar className="w-4 h-4 text-lavender-dark" />
                         <span className="text-sm text-slate-500">Date Range</span>
                         <span className="text-sm font-medium text-slate-700" ml-auto>
-                             {schedule.start_date} - {schedule.end_date}
+                             {formatDate(schedule.start_date)} - {formatDate(schedule.end_date)}
                         </span>
                     </div>
 
