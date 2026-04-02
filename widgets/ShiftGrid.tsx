@@ -1,5 +1,6 @@
 import { formatDate } from "@/lib/utils";
 import { Schedule } from "@/types/schedule";
+import { useShifts } from "@/hooks/useShifts";
 
 interface ShiftGridProps {
     schedule: Schedule;
@@ -8,6 +9,8 @@ interface ShiftGridProps {
 const DAYS = ["SUN", "MON", "TUES", "WED", "THU", "FRI", "SAT"];
 
 export default function ShiftGrid({ schedule }: ShiftGridProps) {
+
+    const { employees } = useShifts(schedule.id, schedule.location_id)
 
     function getWeekDates(): string[] {
         const dates: string[] = [];
@@ -36,6 +39,15 @@ export default function ShiftGrid({ schedule }: ShiftGridProps) {
                         ))}
                     </tr>
                 </thead>
+                <tbody>
+                    {employees.map((employee, index) => (
+                        <tr
+                            key={employee.id}
+                            className={index !== employees.length - 1 ? "border-b border-slate-200" : ""}>
+                                <td>{employee.first_name} {employee.last_name}</td>
+                            </tr>
+                    ))}
+                </tbody>
             </table>
         </div>
     )
