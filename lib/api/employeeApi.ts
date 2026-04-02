@@ -53,3 +53,15 @@ export const deleteEmployee = async (id: number): Promise<void> => {
         throw new Error(`Failed to delete employee: ${response.status} | ${error.detail}`);
     };
 };
+
+export const getEmployeesByLocationId = async (location_id: number): Promise<Employee[]> => {
+    const response = await fetch(`${URL}/location/${location_id}`)
+
+    if (!response.ok) {
+        const error = await response.json();
+        throw new Error(`Failed to fetch employees: ${response.status} | ${error.detail}`);
+    };
+
+    return response.json();
+
+};

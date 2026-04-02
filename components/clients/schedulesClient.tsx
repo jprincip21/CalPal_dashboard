@@ -1,8 +1,8 @@
 "use client"
 import { useState } from "react";
-import { useSchedules } from "@/hooks/useSchedule";
-import { useLocations } from "@/hooks/useLocation";
-import { Schedule } from "@/types/schedules";
+import { useSchedules } from "@/hooks/useSchedules";
+import { useLocations } from "@/hooks/useLocations";
+import { Schedule } from "@/types/schedule";
 import ScheduleTable from "@/widgets/ScheduleTable";
 import ScheduleForm from "@/widgets/ScheduleForm";
 import ScheduleDetail from "@/widgets/ScheduleDetail";

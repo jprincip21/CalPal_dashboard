@@ -1,9 +1,9 @@
-// CalPal Dashboard - useSchedules Hook
+// CalPal Dashboard - useSchedule Hook
 // Jonathan Principato (400527847)
 // Manages schedules state and calls the scheduleApi functions
 
 import { useState, useEffect } from "react";
-import { Schedule, ScheduleRequest } from "@/types/schedules";
+import { Schedule, ScheduleRequest } from "@/types/schedule";
 import { getSchedules, createSchedule, deleteSchedule } from "@/lib/api/scheduleApi";
 import { toast } from "sonner";
 
@@ -49,6 +49,7 @@ export const useSchedules = () => {
         try {
             await deleteSchedule(id)
             await fetchSchedules()
+            toast.success("Schedule deleted successfully")
         } catch (e) {
             const message = e instanceof Error ? e.message : "Failed to delete schedule";
             setError(message);
