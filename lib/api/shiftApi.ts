@@ -2,7 +2,7 @@
 // Jonathan Principato (400527847)
 // Handles all HTTP requests to the CalPal Shift endpoints
 
-import { Shift, ShiftRequest } from "@/types/shifts";
+import { Shift, ShiftRequest } from "@/types/shift";
 
 const URL = "https://calpal-api.jprincip.me/shifts"
 
