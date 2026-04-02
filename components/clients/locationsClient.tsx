@@ -2,7 +2,7 @@
 import { useState } from "react";
 import PageShell from "../layout/pageShell";
 import LocationsTable from "@/widgets/LocationTable";
-import { useLocations } from "@/hooks/useLocation";
+import { useLocations } from "@/hooks/useLocations";
 import { Location } from "@/types/location";
 import LocationForm from "@/widgets/LocationForm";
 

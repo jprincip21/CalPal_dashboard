@@ -5,7 +5,7 @@ import EmployeeTable from "@/widgets/EmployeeTable";
 import { useEmployees } from "@/hooks/useEmployees";
 import { Employee } from "@/types/employee";
 import EmployeeForm from "@/widgets/EmployeeForm";
-import { useLocations } from "@/hooks/useLocation";
+import { useLocations } from "@/hooks/useLocations";
 
 export default function EmployeesClient() {
     const { locations } = useLocations();
