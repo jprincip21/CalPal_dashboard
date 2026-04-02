@@ -49,6 +49,7 @@ export const useSchedules = () => {
         try {
             await deleteSchedule(id)
             await fetchSchedules()
+            toast.success("Schedule deleted successfully")
         } catch (e) {
             const message = e instanceof Error ? e.message : "Failed to delete schedule";
             setError(message);
