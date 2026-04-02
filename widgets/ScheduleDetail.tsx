@@ -26,7 +26,7 @@ export default function ScheduleDetail({ schedule, loading, onDelete }: Schedule
                     <div className="flex items-center gap-2">
                         <MapPin className="w-4 h-4 text-slate-400" />
                         <span className="text-sm text-slate-500">Location</span>
-                        <span className="text-sm font-medium text-slate-700" ml-auto>
+                        <span className="text-sm font-medium text-slate-700  ml-auto">
                              {schedule.location_name ?? "Unknown"}
                         </span>
                     </div>
