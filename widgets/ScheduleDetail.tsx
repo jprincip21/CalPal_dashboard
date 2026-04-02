@@ -53,7 +53,7 @@ export default function ScheduleDetail({ schedule, loading, onDelete }: Schedule
                 </div>
             </div>
 
-            <ShiftGrid />
+            <ShiftGrid schedule={schedule}/>
             <div className="flex items-center justify-around">
                 <Button
                         type="button"
