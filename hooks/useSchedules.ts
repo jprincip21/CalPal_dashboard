@@ -1,4 +1,4 @@
-// CalPal Dashboard - useSchedules Hook
+// CalPal Dashboard - useSchedule Hook
 // Jonathan Principato (400527847)
 // Manages schedules state and calls the scheduleApi functions
 
