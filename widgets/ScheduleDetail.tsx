@@ -13,7 +13,7 @@ interface ScheduleDetailProps {
 
 export default function ScheduleDetail({ schedule, loading, onDelete }: ScheduleDetailProps) {
     return (
-        <div className="max-w-md space-y-6">
+        <div className="max-w-full space-y-6">
             
             {/* Schedule Info */}
             <div className="space-y-4">
@@ -54,19 +54,20 @@ export default function ScheduleDetail({ schedule, loading, onDelete }: Schedule
             </div>
 
             <ShiftGrid />
-
-            <Button
-                    type="button"
-                    disabled={loading}
-                    onClick={() => {
-                        if (confirm("Are you sure you want to delete this schedule?")) {
-                            onDelete(schedule.id);
-                        }
-                    }}
-                    className="w-full h-11 bg-red-400 hover:bg-red-500"
-                >
-                    {loading ? "Deleting..." : "Delete Schedule"}
-            </Button>
+            <div className="flex items-center justify-around">
+                <Button
+                        type="button"
+                        disabled={loading}
+                        onClick={() => {
+                            if (confirm("Are you sure you want to delete this schedule?")) {
+                                onDelete(schedule.id);
+                            }
+                        }}
+                        className="w-full h-11 bg-red-400 hover:bg-red-500 max-w-[50%]"
+                    >
+                        {loading ? "Deleting..." : "Delete Schedule"}
+                </Button>
+            </div>
         </div>
     )
 }
