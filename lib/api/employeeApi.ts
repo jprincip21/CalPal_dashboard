@@ -54,7 +54,7 @@ export const deleteEmployee = async (id: number): Promise<void> => {
     };
 };
 
-export const getEmployeeByLocationId = async (location_id: number): Promise<Employee[]> => {
+export const getEmployeesByLocationId = async (location_id: number): Promise<Employee[]> => {
     const response = await fetch(`${URL}/location/${location_id}`)
 
     if (!response.ok) {
