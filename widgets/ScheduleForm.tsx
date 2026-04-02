@@ -28,7 +28,7 @@ export default function ScheduleForm({ locations, loading, onSubmit }: ScheduleF
     function getNextSaturday(sundayStr: string): string {
         const sunday = new Date(sundayStr);
         const saturday = new Date(sunday);
-        saturday.setDate(saturday.getDate() + 6)
+        saturday.setDate(saturday.getDate() + 7) // Had to update to 7 because 6 was making end day a friday
         return saturday.toLocaleDateString('en-CA');   
     };
 
