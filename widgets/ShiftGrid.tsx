@@ -10,7 +10,7 @@ const DAYS = ["SUN", "MON", "TUES", "WED", "THU", "FRI", "SAT"];
 
 export default function ShiftGrid({ schedule }: ShiftGridProps) {
 
-    const { employees } = useShifts(schedule.id, schedule.location_id)
+    const { employees, loading } = useShifts(schedule.id, schedule.location_id)
 
     function getWeekDates(): string[] {
         const dates: string[] = [];
@@ -21,6 +21,14 @@ export default function ShiftGrid({ schedule }: ShiftGridProps) {
             dates.push(formatDate(date.toString()));
         }
         return dates;
+    }
+
+    if (loading) {
+        return (<p className="text-sm text-slate-400 py-4"> Loading...</p>)
+    }
+
+    if (employees.length === 0) {
+        return (<p className="text-sm text-slate-400 py-4"> No Employees assigned to this location!</p>)
     }
 
     const weekDates = getWeekDates();
@@ -44,7 +52,9 @@ export default function ShiftGrid({ schedule }: ShiftGridProps) {
                         <tr
                             key={employee.id}
                             className={index !== employees.length - 1 ? "border-b border-slate-200" : ""}>
-                                <td>{employee.first_name} {employee.last_name}</td>
+                                <td className="py-3 pr-4 font-medium text-slate-700 border-b border-slate-200">
+                                    {employee.first_name} {employee.last_name}
+                                </td>
                             </tr>
                     ))}
                 </tbody>
