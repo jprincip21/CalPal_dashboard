@@ -1,5 +1,5 @@
 "use client"
-import { Schedule } from "@/types/schedules";
+import { Schedule } from "@/types/schedule";
 import { formatDate } from "@/lib/utils";
 
 interface ScheduleTableProps {

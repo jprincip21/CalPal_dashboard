@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
 import { Calendar } from "lucide-react";
 import { Location } from "@/types/location";
-import { ScheduleRequest } from "@/types/schedules";
+import { ScheduleRequest } from "@/types/schedule";
 
 interface ScheduleFormProps {
     locations: Location[];

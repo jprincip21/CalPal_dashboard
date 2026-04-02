@@ -3,7 +3,7 @@
 // Manages schedules state and calls the scheduleApi functions
 
 import { useState, useEffect } from "react";
-import { Schedule, ScheduleRequest } from "@/types/schedules";
+import { Schedule, ScheduleRequest } from "@/types/schedule";
 import { getSchedules, createSchedule, deleteSchedule } from "@/lib/api/scheduleApi";
 import { toast } from "sonner";
 

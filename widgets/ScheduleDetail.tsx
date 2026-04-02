@@ -1,6 +1,6 @@
 "use client"
 import { Button } from "@/components/ui/button";
-import { Schedule } from "@/types/schedules";
+import { Schedule } from "@/types/schedule";
 import { Calendar, MapPin } from "lucide-react";
 import { formatDate } from "@/lib/utils";
 

@@ -2,7 +2,7 @@
 // Jonathan Principato (400527847)
 // Handles all HTTP requests to the CalPal Schedule endpoints
 
-import { Schedule, ScheduleRequest } from "@/types/schedules";
+import { Schedule, ScheduleRequest } from "@/types/schedule";
 
 const URL = "https://calpal-api.jprincip.me/schedules"
 
