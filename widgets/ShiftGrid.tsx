@@ -1,3 +1,4 @@
+import { formatDate } from "@/lib/utils";
 import { Schedule } from "@/types/schedule";
 
 interface ShiftGridProps {
@@ -14,7 +15,7 @@ export default function ShiftGrid({ schedule }: ShiftGridProps) {
         for (let i = 0; i < 7; i++) {
             const date = new Date(start);
             date.setDate(start.getDate() + i);
-            dates.push(date.toLocaleDateString("en-CA"));
+            dates.push(formatDate(date.toString()));
         }
         return dates;
     }
