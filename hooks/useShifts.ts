@@ -89,6 +89,15 @@ export const useShifts = (schedule_id: number, location_id: number) => {
         };
     };
 
+    // Helper to get a shift for a given employee id
+    // Returns the first shift which matches employee id and date we are looking for
+    const getShiftForEmployee = (employee_id: number, date: string): Shift | undefined => {
+        return shifts.find(shift => {
+            const shiftDate = shift.start_datetime.split("T")[0]; // Date Format: 2026-04-02T09:00:00
+            return shift.employee_id === employee_id && shiftDate === date;
+        })
+    }
+
     return {
         shifts,
         employees,
