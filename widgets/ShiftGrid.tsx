@@ -29,7 +29,7 @@ export default function ShiftGrid({ schedule }: ShiftGridProps) {
         for (let i = 0; i < 7; i++) {
             const date = new Date(start);
             date.setDate(start.getDate() + i);
-            dates.push(formatDate(date.toString()));
+            dates.push(date.toString());
         }
         return dates;
     }
@@ -54,7 +54,7 @@ export default function ShiftGrid({ schedule }: ShiftGridProps) {
                         {weekDates.map((date, i) => (
                             <th key={date} className="pb-3 px-2 text-left font-semibold text-slate-800 uppercase tracking-wider text-xs min-w-35">
                                 <div className="">{DAYS[i]}</div>
-                                <div className="pt-1 text-slate-500 font-normal">{date}</div>
+                                <div className="pt-1 text-slate-500 font-normal">{formatDate(date)}</div>
                             </th>
                         ))}
                     </tr>
