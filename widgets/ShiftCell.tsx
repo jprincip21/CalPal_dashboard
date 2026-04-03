@@ -48,8 +48,16 @@ export default function ShiftCell({
     }
 
     async function createShift() {
-        if (startTime === "" || endTime === "") {
-            toast.error("Please enter time values")
+        if (startTime === "" && endTime === "") {
+            toast.error("Please enter shift time")
+            return
+        };
+        if (startTime === "") {
+            toast.error("Please enter start time")
+            return
+        };
+        if (endTime === "") {
+            toast.error("Please enter end time")
             return
         };
         // console.log(`Selected Time: ${startTime}`)
@@ -80,7 +88,8 @@ export default function ShiftCell({
 if (isOpen) {
     return (
             <td className="py-3 px-2 font-medium border-b border-slate-200 hover:bg-slate-200">
-                <div className=" flex flex-col gap-1">
+                <div className=" flex flex-col gap-1"
+                onClick={() => setIsOpen(false)}>
                     <div className="flex justify-between">
                     <p className="pt-1 text-slate-500 font-normal text-xs">Start Time:</p>
                     <button 
@@ -93,6 +102,7 @@ if (isOpen) {
                     <Input 
                         type="time"
                         value={startTime}
+                        onClick={(e) => e.stopPropagation()}
                         onChange={e => setStartTime(e.target.value)}
                         className="h-7 text-xs"
                     />
@@ -100,6 +110,7 @@ if (isOpen) {
                     <Input 
                         type="time"
                         value={endTime}
+                        onClick={(e) => e.stopPropagation()}
                         onChange={e => setEndTime(e.target.value)}
                         className="h-7 text-xs"
                     />
@@ -110,14 +121,14 @@ if (isOpen) {
                     >
                         Save
                     </Button>
-                    <Button
+                    {shift && (<Button
                         type="button"
                         onClick={() => console.log("Delete Shift")}
                         className="h-6 text-xs flex-1 bg-red-400 hover:bg-red-500"
                     >
                         Delete
                     </Button>
-                    
+                    )}
                 </div>
             </td>
     
