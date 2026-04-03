@@ -4,8 +4,10 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { formatTime } from "@/lib/utils";
 import { Shift, ShiftRequest } from "@/types/shift";
+import { MoonIcon, Sun } from "lucide-react";
 import { useState } from "react"
-import { start } from "repl";
+import { toast } from "sonner";
+// TODO: Add Edit Logic, Add Delete Logic, Create logic for publishing and completing schedules, 
 
 interface ShiftCellProps {
     shift?: Shift;
@@ -18,7 +20,7 @@ interface ShiftCellProps {
     disabled: boolean;
 }
 
-export default function Shiftcell({   
+export default function ShiftCell({   
     shift,
     employee_id,
     schedule_id,
@@ -46,6 +48,10 @@ export default function Shiftcell({
     }
 
     async function createShift() {
+        if (startTime === "" || endTime === "") {
+            toast.error("Please enter time values")
+            return
+        };
         // console.log(`Selected Time: ${startTime}`)
         const isOvernight = endTime < startTime;
         const payload: ShiftRequest = {
@@ -115,11 +121,22 @@ if (isOpen) {
 }
     return (
         <td className={`py-3 px-2 font-medium border-b border-slate-200 ${disabled ? "" : "hover:bg-slate-200"}`} onClick={() => {handleOpen()}}>
+            {/* If there is an existing shift display the scheduled time, otherwise display "-" */}
             {shift ? (
                 
                     <div className="flex flex-col text-xs font-medium text-slate-500">
-                        <p>{formatTime(shift.start_datetime.split(" ")[1])}</p>
+                        <div className="flex items-center gap-4">
+                            <p>{formatTime(shift.start_datetime.split(" ")[1])}</p>
+
+                            {/* If it is a nightshift display a moon otherwise display a sun */}
+                            {shift.end_datetime.split(" ")[0] > shift.start_datetime.split(" ")[0] ? (
+                            <MoonIcon className="w-4 h-4 text-lavender-primary"/>) 
+                            : (<Sun className="w-4 h-4 text-lavender-primary"/>)
+                            }
+                        </div>
                         <p>{formatTime(shift.end_datetime.split(" ")[1])}</p>
+
+                        
                     </div>
                     ) : (<p>-</p>)}
         </td>
