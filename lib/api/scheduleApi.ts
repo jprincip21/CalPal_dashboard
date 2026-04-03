@@ -44,7 +44,7 @@ export const updateScheduleState = async (id: number, action: "publish" | "compl
     const response = await fetch(`${URL}/${id}/state`, {
         method: "PUT",
         headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(action)
+        body: JSON.stringify({ action })
         
     });
 
