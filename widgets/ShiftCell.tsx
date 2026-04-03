@@ -67,6 +67,10 @@ export default function ShiftCell({
 
     function handleOpen() {
         // console.log(`Selected Date: ${date}`)
+        // console.log(shift ? shift.start_datetime.split(" ")[1] : "")
+        // console.log(shift ? shift.end_datetime.split(" ")[1] : "")
+        setStartTime(shift ? shift.start_datetime.split(" ")[1] : "")
+        setEndTime(shift ? shift.end_datetime.split(" ")[1] : "")
         if (!disabled) {
             setIsOpen(true)
         }
