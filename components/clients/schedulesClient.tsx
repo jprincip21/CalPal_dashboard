@@ -12,12 +12,13 @@ import { ArrowLeft } from "lucide-react";
 type View = "table" | "create" | "detail";
 
 export default function SchedulesClient() {
-    const { schedules, loading, addSchedule, removeSchedule} = useSchedules();
+    const { schedules, loading, addSchedule, removeSchedule, updateState} = useSchedules();
     const { locations } = useLocations();
     const [view, setView] = useState<View>("table");
     const [selectedSchedule, setSelectedSchedule] = useState<Schedule | null>(null);
 
     const handleSelect = (schedule: Schedule) => {
+        // console.log(schedule.state)
         setSelectedSchedule(schedule);
         setView("detail");
     };
@@ -29,6 +30,12 @@ export default function SchedulesClient() {
 
     const handleDelete = async (id: number) => {
         await removeSchedule(id)
+        setView("table");
+        setSelectedSchedule(null);
+    }
+
+    const handleStateChange = async (id: number, action: "publish" | "complete") => {
+        await updateState(id, action)
         setView("table");
         setSelectedSchedule(null);
     }
@@ -78,6 +85,7 @@ export default function SchedulesClient() {
                         schedule={selectedSchedule}
                         loading={loading}
                         onDelete={handleDelete}
+                        onStateChange={handleStateChange}
                     />
                 )}
             </div>
