@@ -22,10 +22,10 @@ export default function ShiftGrid({ schedule }: ShiftGridProps) {
         getShiftForEmployee,
     } = useShifts(schedule.id, schedule.location_id)
 
-    //Create an array of date (Month Day, Year) for each day of the week
+    //Create an array of date (YYYY-MM-DD) for each day of the week
     function getWeekDates(): string[] {
         // Was previously formatted as Wed Apr 08 2026 20:00:00 GMT-0400 (Eastern Daylight Time) 
-        // Updated to YYYY-MM_DD
+        // Updated to YYYY-MM-DD
         const dates: string[] = [];
         const start = new Date(schedule.start_date  + "T00:00:00Z");
         // console.log(start)
