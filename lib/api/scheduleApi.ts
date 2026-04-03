@@ -50,6 +50,6 @@ export const updateScheduleState = async (id: number, action: "publish" | "compl
 
     if (!response.ok) {
         const error = await response.json()
-        throw new Error(`Failed to delete schedule: ${response.status} | ${error.detail}`)
+        throw new Error(`Failed to update schedule: ${response.status} | ${error.detail}`)
     }
 }
