@@ -2,6 +2,7 @@ import { formatDate } from "@/lib/utils";
 import { Schedule } from "@/types/schedule";
 import { useShifts } from "@/hooks/useShifts";
 import ShiftCell from "@/widgets/ShiftCell";
+import { deleteShift } from "@/lib/api/shiftApi";
 
 interface ShiftGridProps {
     schedule: Schedule;
@@ -11,7 +12,15 @@ const DAYS = ["SUN", "MON", "TUES", "WED", "THU", "FRI", "SAT"];
 
 export default function ShiftGrid({ schedule }: ShiftGridProps) {
 
-    const { employees, loading } = useShifts(schedule.id, schedule.location_id)
+    const { 
+        shifts, 
+        employees, 
+        loading,
+        addShift,
+        editShift,
+        removeShift,
+        getShiftForEmployee,
+    } = useShifts(schedule.id, schedule.location_id)
 
     //Create an array of date (Month Day, Year) for each day of the week
     function getWeekDates(): string[] {
@@ -61,7 +70,18 @@ export default function ShiftGrid({ schedule }: ShiftGridProps) {
                                     {employee.first_name} {employee.last_name}
                             </td>
                             {weekDates.map(date => (
-                                <ShiftCell />
+                                <ShiftCell 
+                                    key={`${employee.id}-${date}`}
+                                    shift={getShiftForEmployee(employee.id, date)}
+                                    employee_id={employee.id}
+                                    schedule_id={schedule.id}
+                                    date={date}
+                                    onAdd={addShift}
+                                    onEdit={editShift}
+                                    onDelete={deleteShift}
+                                    disabled={loading || schedule.state !== "draft"}
+
+                                />
                             ))}
                         </tr>
                     ))}

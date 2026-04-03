@@ -2,10 +2,32 @@
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { Shift, ShiftRequest } from "@/types/shift";
+import { useState } from "react"
 
+interface ShiftCellProps {
+    shift?: Shift;
+    employee_id: number;
+    schedule_id: number;
+    date: string;
+    onAdd: (data: ShiftRequest) => Promise<void>;
+    onEdit: (id: number, data: ShiftRequest) => Promise<void>;
+    onDelete: (id: number) => Promise<void>;
+    disabled: boolean;
+}
 
+export default function Shiftcell({   
+    shift,
+    employee_id,
+    schedule_id,
+    date,
+    onAdd,
+    onEdit,
+    onDelete,
+    disabled
+}: ShiftCellProps) {
+    const [isOpen, setIsOpen] = useState(false)
 
-export default function Shiftcell() {
     return (
     <td className="py-3 px-2 font-medium border-b border-slate-200">
         <div className=" flex flex-col gap-1">
