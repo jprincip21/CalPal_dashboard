@@ -2,7 +2,6 @@ import { formatDate } from "@/lib/utils";
 import { Schedule } from "@/types/schedule";
 import { useShifts } from "@/hooks/useShifts";
 import ShiftCell from "@/widgets/ShiftCell";
-import { deleteShift } from "@/lib/api/shiftApi";
 
 interface ShiftGridProps {
     schedule: Schedule;
@@ -13,7 +12,6 @@ const DAYS = ["SUN", "MON", "TUES", "WED", "THU", "FRI", "SAT"];
 export default function ShiftGrid({ schedule }: ShiftGridProps) {
 
     const { 
-        shifts, 
         employees, 
         loading,
         addShift,
