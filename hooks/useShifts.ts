@@ -106,6 +106,7 @@ export const useShifts = (schedule_id: number, location_id: number) => {
         addShift,
         editShift,
         removeShift,
+        getShiftForEmployee
 
     };
 
