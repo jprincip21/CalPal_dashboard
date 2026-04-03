@@ -11,16 +11,34 @@ const DAYS = ["SUN", "MON", "TUES", "WED", "THU", "FRI", "SAT"];
 
 export default function ShiftGrid({ schedule }: ShiftGridProps) {
 
-    const { employees, loading } = useShifts(schedule.id, schedule.location_id)
+    const { 
+        employees, 
+        loading,
+        addShift,
+        editShift,
+        removeShift,
+        getShiftForEmployee,
+    } = useShifts(schedule.id, schedule.location_id)
 
+    //Create an array of date (YYYY-MM-DD) for each day of the week
     function getWeekDates(): string[] {
+        // Was previously formatted as Wed Apr 08 2026 20:00:00 GMT-0400 (Eastern Daylight Time) 
+        // Updated to YYYY-MM-DD
         const dates: string[] = [];
-        const start = new Date(schedule.start_date);
+        const start = new Date(schedule.start_date  + "T00:00:00Z");
+        // console.log(start)
+        // console.log(schedule.start_date)
         for (let i = 0; i < 7; i++) {
+
             const date = new Date(start);
-            date.setDate(start.getDate() + i);
-            dates.push(formatDate(date.toString()));
+            date.setUTCDate(start.getUTCDate() + i);
+            // console.log(date)
+            const dateString = date.toISOString().split('T')[0];
+            // console.log(dateString)
+            dates.push(dateString); 
+
         }
+        
         return dates;
     }
 
@@ -44,12 +62,13 @@ export default function ShiftGrid({ schedule }: ShiftGridProps) {
                         {weekDates.map((date, i) => (
                             <th key={date} className="pb-3 px-2 text-left font-semibold text-slate-800 uppercase tracking-wider text-xs min-w-35">
                                 <div className="">{DAYS[i]}</div>
-                                <div className="pt-1 text-slate-500 font-normal">{date}</div>
+                                <div className="pt-1 text-slate-500 font-normal">{formatDate(date)}</div>
                             </th>
                         ))}
                     </tr>
                 </thead>
-
+                
+                {/* Table Body */}
                 <tbody>
                     {employees.map((employee, index) => (
                         <tr
@@ -59,7 +78,18 @@ export default function ShiftGrid({ schedule }: ShiftGridProps) {
                                     {employee.first_name} {employee.last_name}
                             </td>
                             {weekDates.map(date => (
-                                <ShiftCell/>
+                                <ShiftCell 
+                                    key={`${employee.id}-${date}`}
+                                    shift={getShiftForEmployee(employee.id, date)}
+                                    employee_id={employee.id}
+                                    schedule_id={schedule.id}
+                                    date={date}
+                                    onCreate={addShift}
+                                    onEdit={editShift}
+                                    onDelete={removeShift}
+                                    disabled={loading || schedule.state !== "draft"}
+
+                                />
                             ))}
                         </tr>
                     ))}

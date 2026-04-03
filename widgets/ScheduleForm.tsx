@@ -16,6 +16,7 @@ interface ScheduleFormProps {
 export default function ScheduleForm({ locations, loading, onSubmit }: ScheduleFormProps) {
     const [dateError, setDateError] = useState<string | null>(null);
 
+    // Used to set the default value for the date selection of when the schedule will start
     function getNextSunday(): string {
         const today = new Date();
         const day = today.getDay();
