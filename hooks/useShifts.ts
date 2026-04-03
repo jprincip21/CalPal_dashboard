@@ -93,7 +93,11 @@ export const useShifts = (schedule_id: number, location_id: number) => {
     // Returns the first shift which matches employee id and date we are looking for
     const getShiftForEmployee = (employee_id: number, date: string): Shift | undefined => {
         return shifts.find(shift => {
-            const shiftDate = shift.start_datetime.split("T")[0]; // Date Format: 2026-04-02T09:00:00
+            console.log(`Date to Check${date}`)
+            const shiftDate = shift.start_datetime.split(" ")[0]; // Date Format: 2026-04-02 09:00:00
+            console.log(`Shift Date: ${shiftDate}`)
+            if (shift.employee_id === employee_id && shiftDate === date) 
+                {console.log("shiftFound")}
             return shift.employee_id === employee_id && shiftDate === date;
         })
     }
