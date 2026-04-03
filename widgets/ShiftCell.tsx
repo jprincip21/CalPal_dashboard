@@ -28,18 +28,20 @@ export default function Shiftcell({
 }: ShiftCellProps) {
     const [isOpen, setIsOpen] = useState(false)
 
-    function buildShiftTime(date: string): string {
-        const newDate = new Date(date)
-        return newDate.toLocaleDateString("en-CA")
+    function buildShiftTime(date: string, time: string): string {
+        const newDate = new Date(date + "T00:00:00Z")
+        const dateString = newDate.toISOString().split("T")[0] + `T${time}`
+        console.log(dateString)
+        return dateString
     }
 
     async function createShift() {
-        console.log(date)
+        
         const payload: ShiftRequest = {
             schedule_id,
             employee_id,
-            start_datetime: `${buildShiftTime(date)}T09:00:00`,
-            end_datetime: `${buildShiftTime(date)}T017:00:00`,
+            start_datetime: `${buildShiftTime(date, "09:00:00")}`,
+            end_datetime: `${buildShiftTime(date, "17:00:00")}`,
         }
 
         await onCreate(payload)
@@ -47,6 +49,7 @@ export default function Shiftcell({
     }
 
     function handleOpen() {
+        console.log(date)
         if (!disabled) {
             setIsOpen(true)
         }
