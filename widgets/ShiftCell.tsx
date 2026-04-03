@@ -31,7 +31,7 @@ export default function Shiftcell({
     function buildShiftTime(date: string, time: string): string {
         const newDate = new Date(date + "T00:00:00Z")
         const dateString = newDate.toISOString().split("T")[0] + `T${time}`
-        console.log(dateString)
+        // console.log(dateString)
         return dateString
     }
 
@@ -49,7 +49,7 @@ export default function Shiftcell({
     }
 
     function handleOpen() {
-        console.log(date)
+        // console.log(date)
         if (!disabled) {
             setIsOpen(true)
         }
