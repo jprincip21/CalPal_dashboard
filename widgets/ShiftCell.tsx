@@ -47,17 +47,19 @@ export default function ShiftCell({
         return dateString
     }
 
-    async function createShift() {
-        if (startTime === "" && endTime === "") {
-            toast.error("Please enter shift time")
+    async function createShift(event: React.MouseEvent<HTMLButtonElement>) {
+        event.stopPropagation()
+        if (!startTime && !endTime) {
+            
+            toast.error("Shift start and end times are required")
             return
         };
-        if (startTime === "") {
-            toast.error("Please enter start time")
+        if (!startTime) {
+            toast.error("Start time is required")
             return
         };
-        if (endTime === "") {
-            toast.error("Please enter end time")
+        if (!endTime) {
+            toast.error("End time is required")
             return
         };
         // console.log(`Selected Time: ${startTime}`)
@@ -116,7 +118,7 @@ if (isOpen) {
                     />
                     <Button
                     type="button"
-                    onClick={createShift}
+                    onClick={e => {createShift(e)}}
                     className="h-6 text-xs flex-1"
                     >
                         Save
