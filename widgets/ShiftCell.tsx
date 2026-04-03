@@ -10,7 +10,7 @@ interface ShiftCellProps {
     employee_id: number;
     schedule_id: number;
     date: string;
-    onAdd: (data: ShiftRequest) => Promise<void>;
+    onCreate: (data: ShiftRequest) => Promise<void>;
     onEdit: (id: number, data: ShiftRequest) => Promise<void>;
     onDelete: (id: number) => Promise<void>;
     disabled: boolean;
@@ -21,12 +21,30 @@ export default function Shiftcell({
     employee_id,
     schedule_id,
     date,
-    onAdd,
+    onCreate,
     onEdit,
     onDelete,
     disabled
 }: ShiftCellProps) {
     const [isOpen, setIsOpen] = useState(false)
+
+    function buildShiftTime(date: string): string {
+        const newDate = new Date(date)
+        return newDate.toLocaleDateString("en-CA")
+    }
+
+    async function createShift() {
+        console.log(date)
+        const payload: ShiftRequest = {
+            schedule_id,
+            employee_id,
+            start_datetime: `${buildShiftTime(date)}T09:00:00`,
+            end_datetime: `${buildShiftTime(date)}T017:00:00`,
+        }
+
+        await onCreate(payload)
+        setIsOpen(false)
+    }
 
     function handleOpen() {
         if (!disabled) {
@@ -59,7 +77,7 @@ if (isOpen) {
                 />
                 <Button
                 type="button"
-                onClick={() => console.log("Create Shift")}
+                onClick={createShift}
                 className="h-6 text-xs flex-1"
                 >
                     Save
