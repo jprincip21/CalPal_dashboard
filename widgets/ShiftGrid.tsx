@@ -76,7 +76,7 @@ export default function ShiftGrid({ schedule }: ShiftGridProps) {
                                     employee_id={employee.id}
                                     schedule_id={schedule.id}
                                     date={date}
-                                    onAdd={addShift}
+                                    onCreate={addShift}
                                     onEdit={editShift}
                                     onDelete={deleteShift}
                                     disabled={loading || schedule.state !== "draft"}
