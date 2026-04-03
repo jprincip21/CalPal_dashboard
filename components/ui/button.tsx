@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import React from "react";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>{
@@ -12,15 +13,15 @@ export function Button(
         ...props
     }: ButtonProps) {
     return (
-        <button className={`
+        <button className={cn(`
         bg-lavender-primary
         text-white 
         hover:bg-lavender-dark 
         rounded-md
         shadow-sm 
         disabled:opacity-50 
-        disabled:cursor-not-allowed
-        ${className}`}
+        disabled:cursor-not-allowed`,
+        className)}
         type={type}
         {...props}>
             {children}
