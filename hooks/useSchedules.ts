@@ -4,7 +4,7 @@
 
 import { useState, useEffect } from "react";
 import { Schedule, ScheduleRequest } from "@/types/schedule";
-import { getSchedules, createSchedule, deleteSchedule } from "@/lib/api/scheduleApi";
+import { getSchedules, createSchedule, deleteSchedule, updateScheduleState } from "@/lib/api/scheduleApi";
 import { toast } from "sonner";
 
 export const useSchedules = () => {
@@ -57,12 +57,27 @@ export const useSchedules = () => {
         };
     };
 
+    const updateState = async (id: number, action: "publish" | "complete") => {
+        setError(null)
+        try {
+            await updateScheduleState(id, action);
+            await fetchSchedules();
+            toast.success("Schedule state updated successfully");
+        } catch (e) {
+            const message = e instanceof Error ? e.message: "Failed to update state";
+            setError(message);
+            toast.error(message);
+        };
+
+    };
+
     return {
         schedules,
         loading,
         error,
         addSchedule,
-        removeSchedule
+        removeSchedule,
+        updateState
     }
 
 }

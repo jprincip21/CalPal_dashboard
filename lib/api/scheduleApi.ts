@@ -35,6 +35,20 @@ export const deleteSchedule = async (id: number): Promise<void> => {
     });
 
     if (!response.ok) {
+        const error = await response.json();
+        throw new Error(`Failed to delete schedule: ${response.status} | ${error.detail}`);
+    }
+}
+
+export const updateScheduleState = async (id: number, action: "publish" | "complete"): Promise<void> => {
+    const response = await fetch(`${URL}/${id}/state`, {
+        method: "PUT",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(action)
+        
+    });
+
+    if (!response.ok) {
         const error = await response.json()
         throw new Error(`Failed to delete schedule: ${response.status} | ${error.detail}`)
     }
