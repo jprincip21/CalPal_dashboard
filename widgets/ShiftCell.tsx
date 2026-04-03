@@ -75,6 +75,13 @@ export default function ShiftCell({
         setIsOpen(false)
     }
 
+    async function handleDelete() {
+        if (shift) {
+            await onDelete(shift.id)
+        }
+    }
+
+    // When Opening a shift, if there is an existing shift prefill values to shift times, otherwise default to none
     function handleOpen() {
         // console.log(`Selected Date: ${date}`)
         // console.log(shift ? shift.start_datetime.split(" ")[1] : "")
@@ -125,7 +132,7 @@ if (isOpen) {
                     </Button>
                     {shift && (<Button
                         type="button"
-                        onClick={() => console.log("Delete Shift")}
+                        onClick={handleDelete}
                         className="h-6 text-xs flex-1 bg-red-400 hover:bg-red-500"
                     >
                         Delete
@@ -141,17 +148,21 @@ if (isOpen) {
             {/* If there is an existing shift display the scheduled time, otherwise display "-" */}
             {shift ? (
                 
-                    <div className="flex flex-col text-xs font-medium text-slate-500">
-                        <div className="flex items-center gap-4">
+                    <div className="grid grid-cols-2 gap-2 text-xs font-medium text-slate-500">
+                        <div className="flex flex-col items-center">
                             <p>{formatTime(shift.start_datetime.split(" ")[1])}</p>
+                            <p>{formatTime(shift.end_datetime.split(" ")[1])}</p>
 
-                            {/* If it is a nightshift display a moon otherwise display a sun */}
-                            {shift.end_datetime.split(" ")[0] > shift.start_datetime.split(" ")[0] ? (
-                            <MoonIcon className="w-4 h-4 text-lavender-primary"/>) 
-                            : (<Sun className="w-4 h-4 text-lavender-primary"/>)
-                            }
+                            
                         </div>
-                        <p>{formatTime(shift.end_datetime.split(" ")[1])}</p>
+                        <div className="flex items-center gap-4 justify-center">
+                            {/* If it is a nightshift display a moon otherwise display a sun */}
+                                {shift.end_datetime.split(" ")[0] > shift.start_datetime.split(" ")[0] ? (
+                                <MoonIcon className="w-4 h-4 text-lavender-primary"/>) 
+                                : (<Sun className="w-4 h-4 text-lavender-primary"/>)
+                                }
+                        </div>
+                        
 
                         
                     </div>
