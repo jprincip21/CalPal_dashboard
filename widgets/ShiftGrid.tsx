@@ -24,13 +24,23 @@ export default function ShiftGrid({ schedule }: ShiftGridProps) {
 
     //Create an array of date (Month Day, Year) for each day of the week
     function getWeekDates(): string[] {
+        // Was previously formatted as Wed Apr 08 2026 20:00:00 GMT-0400 (Eastern Daylight Time) 
+        // Updated to YYYY-MM_DD
         const dates: string[] = [];
-        const start = new Date(schedule.start_date);
+        const start = new Date(schedule.start_date  + "T00:00:00Z");
+        // console.log(start)
+        // console.log(schedule.start_date)
         for (let i = 0; i < 7; i++) {
+
             const date = new Date(start);
-            date.setDate(start.getDate() + i);
-            dates.push(date.toString());
+            date.setUTCDate(start.getUTCDate() + i);
+            // console.log(date)
+            const dateString = date.toISOString().split('T')[0];
+            // console.log(dateString)
+            dates.push(dateString); 
+
         }
+        
         return dates;
     }
 
@@ -78,7 +88,7 @@ export default function ShiftGrid({ schedule }: ShiftGridProps) {
                                     date={date}
                                     onCreate={addShift}
                                     onEdit={editShift}
-                                    onDelete={deleteShift}
+                                    onDelete={removeShift}
                                     disabled={loading || schedule.state !== "draft"}
 
                                 />
