@@ -13,6 +13,7 @@ export default function ShiftGrid({ schedule }: ShiftGridProps) {
 
     const { employees, loading } = useShifts(schedule.id, schedule.location_id)
 
+    //Create an array of date (Month Day, Year) for each day of the week
     function getWeekDates(): string[] {
         const dates: string[] = [];
         const start = new Date(schedule.start_date);
@@ -49,7 +50,8 @@ export default function ShiftGrid({ schedule }: ShiftGridProps) {
                         ))}
                     </tr>
                 </thead>
-
+                
+                {/* Table Body */}
                 <tbody>
                     {employees.map((employee, index) => (
                         <tr
