@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { formatTime } from "@/lib/utils";
 import { Shift, ShiftRequest } from "@/types/shift";
 import { useState } from "react"
 import { start } from "repl";
@@ -114,6 +115,12 @@ if (isOpen) {
 }
     return (
         <td className={`py-3 px-2 font-medium border-b border-slate-200 ${disabled ? "" : "hover:bg-slate-200"}`} onClick={() => {handleOpen()}}>
-            -
+            {shift ? (
+                
+                    <div className="flex flex-col text-xs font-medium text-slate-500">
+                        <p>{formatTime(shift.start_datetime.split(" ")[1])}</p>
+                        <p>{formatTime(shift.end_datetime.split(" ")[1])}</p>
+                    </div>
+                    ) : (<p>-</p>)}
         </td>
     )}
