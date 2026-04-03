@@ -27,11 +27,16 @@ export default function Shiftcell({
     disabled
 }: ShiftCellProps) {
     const [isOpen, setIsOpen] = useState(false)
+
+    function handleOpen() {
+        if (!disabled) {
+            setIsOpen(true)
+        }
+    }
     
 
 if (isOpen) {
     return (
-    
         <td className="py-3 px-2 font-medium border-b border-slate-200">
             <div className=" flex flex-col gap-1">
                 <div className="flex justify-between">
@@ -73,7 +78,7 @@ if (isOpen) {
     );
 }
     return (
-        <td className="py-3 px-2 font-medium border-b border-slate-200" onClick={() => {setIsOpen(true)}}>
-            --
+        <td className="py-3 px-2 font-medium border-b border-slate-200" onClick={() => {handleOpen()}}>
+            -
         </td>
     )}
