@@ -28,7 +28,7 @@ export default function Shiftcell() {
             </Button>
             <Button
                 type="button"
-                onClick={() => console.log("Create Shift")}
+                onClick={() => console.log("Delete Shift")}
                 className="h-6 text-xs flex-1 bg-red-400 hover:bg-red-500"
             >
                 Delete

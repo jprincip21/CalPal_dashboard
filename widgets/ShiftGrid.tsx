@@ -59,7 +59,7 @@ export default function ShiftGrid({ schedule }: ShiftGridProps) {
                                     {employee.first_name} {employee.last_name}
                             </td>
                             {weekDates.map(date => (
-                                <ShiftCell/>
+                                <ShiftCell />
                             ))}
                         </tr>
                     ))}
