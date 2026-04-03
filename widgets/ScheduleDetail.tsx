@@ -54,7 +54,7 @@ export default function ScheduleDetail({ schedule, loading, onDelete }: Schedule
             </div>
 
             <ShiftGrid schedule={schedule}/>
-            <div className="flex items-center justify-around">
+            <div className="flex items-center justify-around gap-1">
                 <Button
                         type="button"
                         disabled={loading}
@@ -67,6 +67,17 @@ export default function ScheduleDetail({ schedule, loading, onDelete }: Schedule
                     >
                         {loading ? "Deleting..." : "Delete Schedule"}
                 </Button>
+                {schedule.state === "draft" && (                
+                    <Button
+                        type="button"
+                        disabled={loading}
+                        onClick={() => { console.log("Publishing Schedule")
+                        }}
+                        className="w-full h-11 max-w-[50%]"
+                    >
+                        Publish Schedule
+                </Button>)}
+
             </div>
         </div>
     )
