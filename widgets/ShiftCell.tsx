@@ -31,9 +31,13 @@ export default function Shiftcell({
     const [startTime, setStartTime] = useState("")
     const [endTime, setEndTime] = useState("")
 
-    function buildShiftTime(date: string, time: string): string {
+    function buildShiftTime(date: string, time: string, isOvernight: boolean): string {
         // console.log(`Shift Time: ${time}`)
-        const newDate = new Date(date + "T00:00:00Z")
+        let newDate = new Date(date + "T00:00:00Z")
+        if (isOvernight) {
+            newDate.setDate(newDate.getDate() + 1)
+            // console.log(`Overnight shift date: ${newDate}`)
+        }
         // console.log(`Date before formatting: ${newDate}`)
         const dateString = newDate.toISOString().split("T")[0] + `T${time}`
         // console.log(`Formatted Date: ${dateString}`)
@@ -42,12 +46,12 @@ export default function Shiftcell({
 
     async function createShift() {
         // console.log(`Selected Time: ${startTime}`)
-        
+        const isOvernight = endTime < startTime;
         const payload: ShiftRequest = {
             schedule_id,
             employee_id,
-            start_datetime: `${buildShiftTime(date, `${startTime}:00`)}`,
-            end_datetime: `${buildShiftTime(date, `${endTime}:00`)}`,
+            start_datetime: `${buildShiftTime(date, `${startTime}:00`, false)}`,
+            end_datetime: `${buildShiftTime(date, `${endTime}:00`, isOvernight)}`,
         }
 
         await onCreate(payload)
