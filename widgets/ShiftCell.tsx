@@ -7,7 +7,7 @@ import { Shift, ShiftRequest } from "@/types/shift";
 import { MoonIcon, Sun } from "lucide-react";
 import { useState } from "react"
 import { toast } from "sonner";
-// TODO: Add Edit Logic, Add Delete Logic, Create logic for publishing and completing schedules, 
+// TODO: Create logic for publishing and completing schedules, 
 
 interface ShiftCellProps {
     shift?: Shift;
@@ -47,7 +47,7 @@ export default function ShiftCell({
         return dateString
     }
 
-    async function createShift(event: React.MouseEvent<HTMLButtonElement>) {
+    async function createUpdateShift(event: React.MouseEvent<HTMLButtonElement>) {
         event.stopPropagation()
         if (!startTime && !endTime) {
             
@@ -71,7 +71,12 @@ export default function ShiftCell({
             end_datetime: `${buildShiftTime(date, `${endTime}:00`, isOvernight)}`,
         }
 
-        await onCreate(payload)
+        if (!shift) {
+            await onCreate(payload)
+        } else {
+            await onEdit(shift.id, payload)
+        }
+        
         setIsOpen(false)
     }
 
@@ -125,10 +130,10 @@ if (isOpen) {
                     />
                     <Button
                     type="button"
-                    onClick={e => {createShift(e)}}
+                    onClick={e => {createUpdateShift(e)}}
                     className="h-6 text-xs flex-1"
                     >
-                        Save
+                        {!shift ? "Create" : "Update"}
                     </Button>
                     {shift && (<Button
                         type="button"
@@ -144,12 +149,12 @@ if (isOpen) {
     );
 }
     return (
-        <td className={`py-3 px-2 font-medium border-b border-slate-200 ${disabled ? "" : "hover:bg-slate-200"}`} onClick={() => {handleOpen()}}>
+        <td className={`py-3 p-2 font-medium border-b border-slate-200 ${disabled ? "" : "hover:bg-slate-200"}`} onClick={() => {handleOpen()}}>
             {/* If there is an existing shift display the scheduled time, otherwise display "-" */}
             {shift ? (
                 
                     <div className="grid grid-cols-2 gap-2 text-xs font-medium text-slate-500">
-                        <div className="flex flex-col items-center">
+                        <div className="flex flex-col items-start">
                             <p>{formatTime(shift.start_datetime.split(" ")[1])}</p>
                             <p>{formatTime(shift.end_datetime.split(" ")[1])}</p>
 
