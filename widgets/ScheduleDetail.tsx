@@ -2,16 +2,17 @@
 import { Button } from "@/components/ui/button";
 import { Schedule } from "@/types/schedule";
 import { Calendar, MapPin } from "lucide-react";
-import { formatDate } from "@/lib/utils";
+import { cn, formatDate } from "@/lib/utils";
 import ShiftGrid from "./ShiftGrid";
 
 interface ScheduleDetailProps {
     schedule: Schedule;
     loading: boolean;
     onDelete: (id: number) => Promise<void>;
+    onStateChange: (id: number, action: "publish" | "complete") => Promise<void>
 }
 
-export default function ScheduleDetail({ schedule, loading, onDelete }: ScheduleDetailProps) {
+export default function ScheduleDetail({ schedule, loading, onDelete, onStateChange }: ScheduleDetailProps) {
     return (
         <div className="max-w-full space-y-6">
             
@@ -54,7 +55,7 @@ export default function ScheduleDetail({ schedule, loading, onDelete }: Schedule
             </div>
 
             <ShiftGrid schedule={schedule}/>
-            <div className="flex items-center justify-around">
+            <div className="flex items-center justify-around gap-1">
                 <Button
                         type="button"
                         disabled={loading}
@@ -63,10 +64,39 @@ export default function ScheduleDetail({ schedule, loading, onDelete }: Schedule
                                 onDelete(schedule.id);
                             }
                         }}
-                        className="w-full h-11 bg-red-400 hover:bg-red-500 max-w-[50%]"
+                        className="w-full h-11 bg-red-400 hover:bg-red-500"
                     >
                         {loading ? "Deleting..." : "Delete Schedule"}
                 </Button>
+                {schedule.state === "draft" && (                
+                    <Button
+                        type="button"
+                        disabled={loading}
+                        onClick={() => { 
+                             if (confirm("Are you sure you want to publish this schedule?")) {
+                                onStateChange(schedule.id, "publish")
+                             }
+                        }}
+                        className="w-full h-11 max-w-[50%]"
+                    >
+                        Publish Schedule
+                </Button>)}
+
+                {schedule.state === "published" && (                
+                    <Button
+                        type="button"
+                        disabled={loading}
+                        onClick={() => {  
+                            if (confirm("Are you sure you want to complete this schedule?")) {
+                                onStateChange(schedule.id, "complete")
+                             }
+                        }}
+                        className={cn("w-full h-11 max-w-[50%] bg-blue-400 hover:bg-blue-500")}
+                    >
+                        Complete Schedule
+                </Button>)}
+
+
             </div>
         </div>
     )
